@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Danh Mục Chuyên Khoa - Bệnh Viện Đa Khoa Quốc Tế</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+        :root {
+            --primary: #e63946;
+            --secondary: #1d3557;
+            --light: #f1faee;
+            --gray: #6c757d;
+            --border: #dee2e6;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #7e22ce 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: white;
+            font-size: 2.5em;
+            margin-bottom: 50px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        /* Departments Grid */
+        .departments-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .department-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .department-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .department-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+
+        .department-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        /* ICON ĐÃ ĐƯỢC TỐI ƯU */
+        .icon {
+            font-size: 3.5em; /* Kích thước icon */
+            margin-bottom: 15px;
+            display: block;
+            transition: transform 0.3s ease;
+            /* Màu Gradient cho Icon */
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .department-card:hover .icon {
+            transform: scale(1.15);
+        }
+
+        .department-name {
+            font-size: 1.4em;
+            color: #333;
+            font-weight: 600;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 { font-size: 2em; }
+            .departments-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 15px;
+            }
+            .department-card { padding: 25px 15px; }
+            .icon { font-size: 3em; }
+            .department-name { font-size: 1.1em; }
+        }
+
+    .news-section {
+        background-color: #ffffff;
+        border-radius: 15px;
+        padding: 30px;
+        margin-top: 50px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    }
+
+    .section-title-news {
+        text-align: center;
+        color: var(--secondary); /* Màu xanh navy */
+        font-size: 2.2em;
+        margin-bottom: 40px;
+        position: relative;
+    }
+    .section-title-news::after {
+        content: '';
+        display: block;
+        width: 80px;
+        height: 4px;
+        background: var(--primary); /* Màu đỏ */
+        margin: 15px auto 0;
+        border-radius: 2px;
+    }
+
+    .news-card {
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+    .news-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+    .news-img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+    }
+    .news-content {
+        padding: 20px;
+    }
+    .news-tag {
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: var(--primary);
+        text-transform: uppercase;
+        margin-bottom: 8px;
+    }
+    .news-title {
+        font-size: 1.15rem;
+        font-weight: 600;
+        color: var(--secondary);
+        text-decoration: none;
+        display: block;
+    }
+    .news-title:hover {
+        color: var(--primary);
+    }
+    .news-date {
+        font-size: 0.85rem;
+        color: var(--gray);
+        margin-top: 10px;
+    }
+</style>
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Danh mục chuyên khoa</h1>
+        
+        <div class="departments-grid">
+            
+            <div class="department-card">
+                <i class="icon fas fa-heart-pulse"></i>
+                <h2 class="department-name">Tim Mạch</h2>
+            </div>
+
+            <div class="department-card">
+                <i class="icon fas fa-brain"></i>
+                <h2 class="department-name">Thần Kinh</h2>
+            </div>
+
+            <div class="department-card">
+                <i class="icon fas fa-bone"></i>
+                <h2 class="department-name">Cơ Xương Khớp</h2>
+            </div>
+
+            <div class="department-card">
+                <i class="icon fas fa-baby"></i>
+                <h2 class="department-name">Nhi Khoa</h2>
+            </div>
+
+            <div class="department-card">
+                <i class="icon fas fa-eye"></i>
+                <h2 class="department-name">Mắt</h2>
+            </div>
+
+            <div class="department-card">
+                <i class="icon fas fa-tooth"></i>
+                <h2 class="department-name">Răng Hàm Mặt</h2>
+            </div>
+
+            <div class="department-card">
+                <i class="icon fas fa-female"></i>
+                <h2 class="department-name">Sản Phụ Khoa</h2>
+            </div>
+
+            <div class="department-card">
+                <i class="icon fas fa-lungs"></i>
+                <h2 class="department-name">Hô Hấp</h2>
+            </div>
+            
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="news-section">
+            <h2 class="section-title-news">Tin tức & Kiến thức Y khoa</h2>
+
+            <div class="row g-4">
+                
+                <div class="col-md-4">
+                    <div class="news-card">
+                        <img src="../../assets/images/image1.jpg" alt="Tin tức 1" class="news-img">
+                        <div class="news-content">
+                            <div class="news-tag">Tim Mạch</div>
+                            <a href="#" class="news-title">5 dấu hiệu sớm cảnh báo bệnh lý tim mạch bạn không nên bỏ qua</a>
+                            <p class="news-date"><i class="fas fa-calendar-alt me-2"></i> 02/11/2025</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="news-card">
+                        <img src="https://via.placeholder.com/400x200/1d3557/white?text=Dinh+Dưỡng" alt="Tin tức 2" class="news-img">
+                        <div class="news-content">
+                            <div class="news-tag">Dinh Dưỡng</div>
+                            <a href="#" class="news-title">Chế độ ăn Địa Trung Hải giúp giảm nguy cơ đột quỵ</a>
+                            <p class="news-date"><i class="fas fa-calendar-alt me-2"></i> 01/11/2025</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                     <div class="news-card">
+                        <img src="https://via.placeholder.com/400x200/667eea/white?text=Công+Nghệ" alt="Tin tức 3" class="news-img">
+                        <div class="news-content">
+                            <div class="news-tag">Công Nghệ</div>
+                            <a href="#" class="news-title">Ứng dụng AI trong chẩn đoán hình ảnh: Bước tiến mới</a>
+                            <p class="news-date"><i class="fas fa-calendar-alt me-2"></i> 31/10/2025</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script>
+        document.querySelectorAll('.department-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const deptName = this.querySelector('.department-name').textContent;
+                alert('Chuyển đến: ' + deptName);
+                // window.location.href = '/chuyen-khoa/' + deptName.toLowerCase().replace(/\s/g, '-');
+            });
+        });
+    </script>
+</body>
+</html>

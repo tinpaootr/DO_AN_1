@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Đội Ngũ Bác Sĩ Chuyên Môn</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #f5f7fa 0%, #e8eef5 100%);
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Animated background */
+    body::before {
+      content: '';
+      position: fixed;
+      top: -50%;
+      right: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at 30% 30%, rgba(102, 126, 234, 0.06), transparent 50%);
+      animation: rotate 25s linear infinite;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    @keyframes rotate {
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* Header Section */
+    .header-section {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      padding: 80px 0 100px;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: -50px;
+    }
+
+    .header-section::before {
+      content: '';
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      top: -200px;
+      right: -150px;
+      animation: float 8s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-30px);
+      }
+    }
+
+    .header-badge {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      color: white;
+      padding: 8px 24px;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 20px;
+    }
+
+    .section-title {
+      color: white;
+      font-weight: 800;
+      font-size: 3rem;
+      margin-bottom: 15px;
+      text-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .section-subtitle {
+      color: rgba(255, 255, 255, 0.95);
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Search & Filter Box */
+    .search-filter-box {
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+      padding: 30px;
+      margin-bottom: 40px;
+      position: relative;
+      z-index: 10;
+      border: 2px solid #f0f0f0;
+    }
+
+    .input-group .form-control,
+    .form-select {
+      border: 2px solid #e8eef5;
+      border-radius: 12px;
+      padding: 12px 16px;
+      font-size: 0.95rem;
+      transition: all 0.3s;
+    }
+
+    .input-group .form-control:focus,
+    .form-select:focus {
+      border-color: #667eea;
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    }
+
+    .input-group-text {
+      background: transparent;
+      border: 2px solid #e8eef5;
+      border-right: none;
+      border-radius: 12px 0 0 12px;
+    }
+
+    .input-group .form-control {
+      border-left: none;
+      border-radius: 0 12px 12px 0;
+    }
+
+    /* Doctor Card */
+    .doctor-card-item {
+      background: white;
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      border: 2px solid transparent;
+      height: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .doctor-card-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, #667eea, #764ba2);
+      transform: scaleX(0);
+      transition: transform 0.4s;
+    }
+
+    .doctor-card-item:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 12px 40px rgba(102, 126, 234, 0.2);
+      border-color: #667eea;
+    }
+
+    .doctor-card-item:hover::before {
+      transform: scaleX(1);
+    }
+
+    /* Doctor Image */
+    .doctor-img-wrapper {
+      position: relative;
+      width: 140px;
+      height: 140px;
+      flex-shrink: 0;
+    }
+
+    .doctor-img-container {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 20px;
+      border: 4px solid #f0f7ff;
+      transition: all 0.4s;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .doctor-card-item:hover .doctor-img-container {
+      border-color: #667eea;
+      transform: scale(1.05);
+      box-shadow: 0 12px 30px rgba(102, 126, 234, 0.3);
+    }
+
+    /* Doctor Info */
+    .doctor-info {
+      display: flex;
+      gap: 25px;
+      align-items: start;
+    }
+
+    .doctor-name {
+      font-weight: 700;
+      font-size: 1.35rem;
+      color: #1e293b;
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+
+    .doctor-title-text {
+      color: #667eea;
+      font-weight: 600;
+      font-size: 1rem;
+      margin-bottom: 15px;
+    }
+
+    /* Tags */
+    .tag-chuyen-khoa {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .tag-time {
+      background-color: #fff3cd;
+      color: #856404;
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Interest Section */
+    .interest-section {
+      background-color: #f8f9fa;
+      padding: 15px;
+      border-radius: 12px;
+      margin-top: 15px;
+    }
+
+    .interest-label {
+      font-weight: 600;
+      color: #1e293b;
+      font-size: 0.9rem;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .interest-text {
+      color: #64748b;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* Profile Link */
+    .profile-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #667eea;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: all 0.3s;
+      margin-top: 15px;
+    }
+
+    .profile-link:hover {
+      color: #764ba2;
+      gap: 12px;
+    }
+
+    .profile-link i {
+      transition: transform 0.3s;
+    }
+
+    .profile-link:hover i {
+      transform: translateX(4px);
+    }
+
+    /* Stats Section */
+    .doctor-stats {
+      display: flex;
+      gap: 20px;
+      margin-top: 15px;
+      padding-top: 15px;
+      border-top: 1px solid #e8eef5;
+    }
+
+    .stat-item {
+      text-align: center;
+      flex: 1;
+    }
+
+    .stat-value {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #667eea;
+      display: block;
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* Empty State */
+    .empty-state {
+      text-align: center;
+      padding: 60px 20px;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    }
+
+    .empty-state i {
+      font-size: 4rem;
+      color: #cbd5e1;
+      margin-bottom: 20px;
+    }
+
+    .empty-state h4 {
+      color: #1e293b;
+      margin-bottom: 10px;
+    }
+
+    .empty-state p {
+      color: #64748b;
+    }
+
+    /* Container */
+    .main-container {
+      position: relative;
+      z-index: 1;
+      padding: 0 15px 60px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .section-title {
+        font-size: 2rem;
+      }
+
+      .doctor-info {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .doctor-img-wrapper {
+        width: 120px;
+        height: 120px;
+      }
+
+      .search-filter-box {
+        padding: 20px;
+      }
+
+      .profile-link {
+        justify-content: center;
+      }
+
+      .doctor-stats {
+        gap: 10px;
+      }
+    }
+
+    /* Animation */
+    .doctor-card-item {
+      animation: fadeInUp 0.6s ease-out backwards;
+    }
+
+    .doctor-card-item:nth-child(1) { animation-delay: 0.1s; }
+    .doctor-card-item:nth-child(2) { animation-delay: 0.2s; }
+    .doctor-card-item:nth-child(3) { animation-delay: 0.3s; }
+    .doctor-card-item:nth-child(4) { animation-delay: 0.4s; }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="header-section text-center">
+    <div class="container position-relative">
+      <span class="header-badge">
+        <i class="fas fa-user-md me-2"></i>Chuyên gia y tế
+      </span>
+      <h2 class="section-title">Đội Ngũ Bác Sĩ Chuyên Môn</h2>
+      <p class="section-subtitle">Đội ngũ bác sĩ giàu kinh nghiệm, tận tâm và được đào tạo bài bản</p>
+    </div>
+  </div>
+
+  <div class="main-container">
+    <div class="container">
+      <div class="search-filter-box">
+        <div class="row g-3 align-items-center">
+          <div class="col-lg-4 col-md-6">
+            <div class="input-group">
+              <span class="input-group-text"><i class="fas fa-search text-primary"></i></span>
+              <input type="text" id="searchInput" class="form-control"
+                placeholder="Tìm theo tên hoặc chuyên khoa...">
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <select id="filterSelect" class="form-select">
+              <option value="">Tất cả chuyên khoa</option>
+              <option value="Nội Tiết">Nội tiết</option>
+              <option value="Truyền Nhiễm">Truyền nhiễm</option>
+              <option value="Chấn Thương">Chấn thương chỉnh hình</option>
+              <option value="Tiểu Đường">Tiểu đường</option>
+            </select>
+          </div>
+          <div class="col-lg-4 col-md-12">
+            <select id="timeSelect" class="form-select">
+              <option value="">Tất cả khung giờ</option>
+              <option value="Sáng">Buổi sáng (7:00 - 11:00)</option>
+              <option value="Chiều">Buổi chiều (13:00 - 17:00)</option>
+              <option value="Tối">Buổi tối (18:00 - 21:00)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="row g-4" id="doctorList"></div>
+    </div>
+  </div>
+
+  <script>
+    const doctors = [
+      {
+        id: "KJP101",
+        name: "TS.BS. Kovalik Jean-Paul",
+        title: "Chuyên gia Tư vấn",
+        interests: "Bệnh thận, Béo phì, Rối loạn Lipid",
+        specialty: "Nội Tiết",
+        time: "Sáng",
+        timeDetail: "Buổi sáng (7:00 - 11:00)",
+        img: "https://via.placeholder.com/140x140/667eea/FFFFFF?text=Dr.K",
+        experience: "15+",
+        patients: "5,000+",
+        rating: "4.9",
+        profile: "#"
+      },
+      {
+        id: "SKM202",
+        name: "BS. Shirin Kalimuddin",
+        title: "Chuyên gia Tư vấn Cao cấp",
+        interests: "Bệnh truyền nhiễm, Viêm phổi, Vi khuẩn kháng thuốc",
+        specialty: "Truyền Nhiễm",
+        time: "Chiều",
+        timeDetail: "Buổi chiều (13:00 - 17:00)",
+        img: "https://via.placeholder.com/140x140/764ba2/FFFFFF?text=Dr.S",
+        experience: "12+",
+        patients: "4,200+",
+        rating: "4.8",
+        profile: "#"
+      },
+      {
+        id: "JKS303",
+        name: "PGS. Joyce Koh Suang Bee",
+        title: "Chuyên gia Tư vấn Cao cấp",
+        interests: "Phẫu thuật Chấn thương, Chỉnh hình, Thay khớp",
+        specialty: "Chấn Thương",
+        time: "Tối",
+        timeDetail: "Buổi tối (18:00 - 21:00)",
+        img: "https://via.placeholder.com/140x140/667eea/FFFFFF?text=Dr.J",
+        experience: "18+",
+        patients: "6,500+",
+        rating: "5.0",
+        profile: "#"
+      },
+      {
+        id: "KPC404",
+        name: "BS. Kek Peng Chin",
+        title: "Chuyên gia Tư vấn Cao cấp",
+        interests: "Tiểu đường, Nội tiết tổng quát, Tuyến giáp",
+        specialty: "Tiểu Đường",
+        time: "Sáng",
+        timeDetail: "Buổi sáng (7:00 - 11:00)",
+        img: "https://via.placeholder.com/140x140/764ba2/FFFFFF?text=Dr.K",
+        experience: "10+",
+        patients: "3,800+",
+        rating: "4.7",
+        profile: "#"
+      }
+    ];
+
+    const list = document.getElementById("doctorList");
+    const searchInput = document.getElementById("searchInput");
+    const filterSelect = document.getElementById("filterSelect");
+    const timeSelect = document.getElementById("timeSelect");
+
+    function renderDoctors(data) {
+      list.innerHTML = "";
+      if (data.length === 0) {
+        list.innerHTML = `
+          <div class="col-12">
+            <div class="empty-state">
+              <i class="fas fa-user-md-slash"></i>
+              <h4>Không tìm thấy bác sĩ</h4>
+              <p>Vui lòng thử lại với từ khóa hoặc bộ lọc khác</p>
+            </div>
+          </div>`;
+        return;
+      }
+
+      data.forEach(doc => {
+        list.innerHTML += `
+          <div class="col-lg-6">
+            <div class="doctor-card-item">
+              <div class="doctor-info">
+                <div class="doctor-img-wrapper">
+                  <img src="${doc.img}" class="doctor-img-container" alt="${doc.name}">
+                </div>
+                <div class="flex-grow-1">
+                  <h5 class="doctor-name">${doc.name}</h5>
+                  <p class="doctor-title-text">${doc.title}</p>
+                  
+                  <div class="d-flex flex-wrap gap-2 mb-2">
+                    <span class="tag-chuyen-khoa">
+                      <i class="fas fa-stethoscope"></i>${doc.specialty}
+                    </span>
+                    <span class="tag-time">
+                      <i class="fas fa-clock"></i>${doc.timeDetail}
+                    </span>
+                  </div>
+
+                  <div class="interest-section">
+                    <p class="interest-label">
+                      <i class="fas fa-graduation-cap"></i>Lĩnh vực chuyên môn
+                    </p>
+                    <p class="interest-text">${doc.interests}</p>
+                  </div>
+
+                  <div class="doctor-stats">
+                    <div class="stat-item">
+                      <span class="stat-value">${doc.experience}</span>
+                      <span class="stat-label">Năm</span>
+                    </div>
+                    <div class="stat-item">
+                      <span class="stat-value">${doc.patients}</span>
+                      <span class="stat-label">Bệnh nhân</span>
+                    </div>
+                    <div class="stat-item">
+                      <span class="stat-value">${doc.rating}</span>
+                      <span class="stat-label">Đánh giá</span>
+                    </div>
+                  </div>
+
+                  <a href="${doc.profile}" class="profile-link">
+                    <i class="fas fa-user-circle"></i>Xem hồ sơ chi tiết
+                    <i class="fas fa-arrow-right"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>`;
+      });
+    }
+
+    function applyFilters() {
+      const searchTerm = searchInput.value.toLowerCase();
+      const specialtyFilter = filterSelect.value;
+      const timeFilter = timeSelect.value;
+
+      const filteredDoctors = doctors.filter(doc => {
+        const matchesSearch = doc.name.toLowerCase().includes(searchTerm) ||
+          doc.specialty.toLowerCase().includes(searchTerm) ||
+          doc.interests.toLowerCase().includes(searchTerm);
+        const matchesSpecialty = specialtyFilter === "" || doc.specialty === specialtyFilter;
+        const matchesTime = timeFilter === "" || doc.time === timeFilter;
+        return matchesSearch && matchesSpecialty && matchesTime;
+      });
+
+      renderDoctors(filteredDoctors);
+    }
+
+    searchInput.addEventListener("input", applyFilters);
+    filterSelect.addEventListener("change", applyFilters);
+    timeSelect.addEventListener("change", applyFilters);
+
+    renderDoctors(doctors);
+  </script>
+</body>
+
+</html>
