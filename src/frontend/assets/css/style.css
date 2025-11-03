@@ -27,19 +27,19 @@
             box-shadow: 0 5px 30px rgba(0, 0, 0, 0.15);
         }
 
-        .navbar-brand {
+        .navbar-brand-header {
             font-size: 1.5rem;
             font-weight: 700;
             color: #667eea !important;
             transition: all 0.3s;
         }
 
-        .navbar-brand:hover {
+        .navbar-brand-header:hover {
             transform: scale(1.05);
             color: #764ba2 !important;
         }
 
-        .nav-link {
+        .nav-link-header {
             color: #333 !important;
             font-weight: 500;
             margin: 0 10px;
@@ -47,7 +47,7 @@
             transition: all 0.3s;
         }
 
-        .nav-link::after {
+        .nav-link-header::after {
             content: '';
             position: absolute;
             bottom: -5px;
@@ -59,12 +59,12 @@
             transform: translateX(-50%);
         }
 
-        .nav-link:hover {
+        .nav-link-header:hover {
             color: #667eea !important;
             transform: translateY(-2px);
         }
 
-        .nav-link:hover::after {
+        .nav-link-header:hover::after {
             width: 80%;
         }
 
