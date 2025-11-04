@@ -137,12 +137,6 @@
     <div class="sticky-top">
         <div id="navbar"></div>
     </div>
-    <script>
-        // Dùng fetch để load file header.html 
-        fetch("../../components/navbar.html")
-            .then(res => res.text())
-            .then(data => document.getElementById("navbar").innerHTML = data);
-    </script>
 
   <section class="profile-section">
     <div class="container">
@@ -180,7 +174,8 @@
       <div class="row g-4" id="doctorList"></div>
     </div>
   </section>
-
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../../assets/js/navbar.js"></script>
   <script>
     const doctors = [
       {

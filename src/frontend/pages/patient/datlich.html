@@ -747,12 +747,6 @@
     <div class="sticky-top">
         <div id="navbar"></div>
     </div>
-    <script>
-        // Dùng fetch để load file header.html 
-        fetch("../../components/navbar.html")
-            .then(res => res.text())
-            .then(data => document.getElementById("navbar").innerHTML = data);
-    </script>
 
     <div class="booking-wrapper">
         <div class="booking-card">
@@ -1404,6 +1398,7 @@
         renderProfiles();
         renderPackages();
     </script>
+    <script src="../../assets/js/navbar.js"></script>
 </body>
 
 </html>
