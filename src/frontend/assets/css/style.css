@@ -88,6 +88,10 @@
             box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
         }
 
+        /* Ẩn mũi tên dropdown mặc định */
+.btn-login:not(.show-caret)::after {
+  display: none !important;
+}
 /* === Dropdown tài khoản (theo tone tím Eden Health) === */
 .nav-item.dropdown .dropdown-menu {
     border-radius: 12px;
