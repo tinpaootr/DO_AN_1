@@ -321,15 +321,9 @@
 
             <form id="loginForm" method="POST" action="login.php">
                 <div class="form-group">
-<<<<<<< HEAD
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" placeholder="Nhập email của bạn" required>
-                    <i class="fas fa-envelope"></i>
-=======
                     <label for="username">Tài khoản</label>
   <input type="text" id="username" name="username" placeholder="Nhập tài khoản của bạn" required>
   <i class="fas fa-user"></i>
->>>>>>> recover_tram
                 </div>
 
                 <div class="form-group">
@@ -371,106 +365,6 @@
         </div>
     </div>
 
-<<<<<<< HEAD
-    <!-- Google Sign-In Library -->
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
-
-    <script>
-        // Toggle password visibility
-        function togglePassword() {
-            const input = document.getElementById('password');
-            const icon = document.querySelector('.password-toggle');
-            
-            if (input.type === 'password') {
-                input.type = 'text';
-                icon.classList.remove('fa-eye');
-                icon.classList.add('fa-eye-slash');
-            } else {
-                input.type = 'password';
-                icon.classList.remove('fa-eye-slash');
-                icon.classList.add('fa-eye');
-            }
-        }
-
-        // Google Sign-In Configuration
-        const GOOGLE_CLIENT_ID = 'YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com';
-
-        function loginWithGoogle() {
-            google.accounts.id.initialize({
-                client_id: GOOGLE_CLIENT_ID,
-                callback: handleGoogleResponse
-            });
-
-            google.accounts.id.prompt();
-        }
-
-        // Handle Google Sign-In response
-        function handleGoogleResponse(response) {
-            fetch('google_auth.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    credential: response.credential
-                })
-            })
-            .then(res => res.json())
-            .then(data => {
-                if (data.success) {
-                    showAlert('Đăng nhập Google thành công!', 'success');
-                    setTimeout(() => {
-                        window.location.href = data.redirect || 'dashboard.php';
-                    }, 1000);
-                } else {
-                    showAlert(data.message || 'Đăng nhập Google thất bại!', 'error');
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                showAlert('Có lỗi xảy ra khi đăng nhập với Google!', 'error');
-            });
-        }
-
-        // Form submission
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const formData = new FormData(this);
-            
-            fetch('login.php', {
-                method: 'POST',
-                body: formData
-            })
-            .then(res => res.json())
-            .then(data => {
-                if (data.success) {
-                    showAlert('Đăng nhập thành công!', 'success');
-                    setTimeout(() => {
-                        window.location.href = data.redirect || 'dashboard.php';
-                    }, 1000);
-                } else {
-                    showAlert(data.message || 'Email hoặc mật khẩu không đúng!', 'error');
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                showAlert('Có lỗi xảy ra. Vui lòng thử lại!', 'error');
-            });
-        });
-
-        // Show alert message
-        function showAlert(message, type) {
-            const alert = document.getElementById('loginAlert');
-            alert.textContent = message;
-            alert.className = 'alert alert-' + type;
-            alert.style.display = 'block';
-            
-            setTimeout(() => {
-                alert.style.display = 'none';
-            }, 5000);
-        }
-=======
 
     <script>
         // // Form submission
@@ -522,7 +416,6 @@
 
 
         
->>>>>>> recover_tram
     </script>
 </body>
 </html>
