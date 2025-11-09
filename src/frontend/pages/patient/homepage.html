@@ -321,7 +321,11 @@
 
         /* Info Section */
         .info-section {
+<<<<<<< HEAD
             background: linear-gradient(135deg, #e0f7fa, #f9f9f9);
+=======
+            background: linear-gradient(135deg, #667eea, #764ba2);
+>>>>>>> recover_tram
             padding: 80px 0;
             position: relative;
             overflow: hidden;
@@ -418,6 +422,7 @@
         /* === CHUYÊN KHOA === */
         .chuyenkhoa-container {
             max-width: 1200px;
+<<<<<<< HEAD
             margin: 50px auto;
             padding: 20px;
         }
@@ -426,6 +431,49 @@
             border-radius: 20px;
             padding: 24px 28px;
             /* tăng padding */
+=======
+            margin: 80px auto;
+            padding: 20px;
+        }
+
+        /* .chuyenkhoa-header {
+            text-align: center;
+            margin-bottom: 50px;
+        } */
+
+        .section-badge {
+            display: inline-block;
+            padding: 8px 20px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .chuyenkhoa-container .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #1e293b;
+            margin-bottom: 15px;
+            margin-left: 350px;
+        }
+
+        .chuyenkhoa-container .section-subtitle {
+            color: #64748b;
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .service-card {
+            border-radius: 20px;
+            padding: 24px 28px;
+>>>>>>> recover_tram
             background: #fff;
             box-shadow: 0 3px 8px rgba(0, 0, 0, 0.06);
             display: flex;
@@ -433,9 +481,13 @@
             gap: 16px;
             transition: all 0.3s ease;
             font-size: 1.2rem;
+<<<<<<< HEAD
             /* chữ to hơn */
             min-height: 90px;
             /* giúp ô cao hơn */
+=======
+            min-height: 90px;
+>>>>>>> recover_tram
         }
 
         .service-card:hover {
@@ -458,6 +510,13 @@
         }
 
         @media (max-width: 768px) {
+<<<<<<< HEAD
+=======
+            .chuyenkhoa-container .section-title {
+                font-size: 1.8rem;
+            }
+
+>>>>>>> recover_tram
             .service-card {
                 font-size: 1rem;
                 padding: 18px 20px;
@@ -469,7 +528,10 @@
                 font-size: 1.4rem;
             }
         }
+<<<<<<< HEAD
 
+=======
+>>>>>>> recover_tram
         /* === GÓI KHÁM NỔI BẬT - REDESIGN === */
         .package-section .container {
             max-width: 1200px;
@@ -864,12 +926,15 @@
     <div class="sticky-top">
         <div id="navbar"></div>
     </div>
+<<<<<<< HEAD
     <script>
         // Dùng fetch để load file header.html 
         fetch("../../components/navbar.html")
             .then(res => res.text())
             .then(data => document.getElementById("navbar").innerHTML = data);
     </script>
+=======
+>>>>>>> recover_tram
 
     <!-- Banner -->
     <section class="banner-section">
@@ -986,7 +1051,11 @@
     <!-- Chuyên khoa -->
     <div class="chuyenkhoa-container mb-5">
         <div class="d-flex justify-content-between align-items-center mb-3">
+<<<<<<< HEAD
             <h5 class="section-title">Chuyên khoa</h5>
+=======
+            <h5 class="section-title">Chuyên khoa nổi bật</h5>
+>>>>>>> recover_tram
         </div>
         <div class="row g-3">
             <div class="col-md-6 col-lg-4">
@@ -1362,7 +1431,16 @@
             card.style.transition = 'all 0.6s ease-out';
             observer.observe(card);
         });
+<<<<<<< HEAD
     </script>
+=======
+
+</script>
+<script src="../../assets/js/navbar.js"></script>
+
+
+
+>>>>>>> recover_tram
 </body>
 
 </html>

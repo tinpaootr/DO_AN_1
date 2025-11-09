@@ -321,9 +321,15 @@
 
             <form id="loginForm" method="POST" action="login.php">
                 <div class="form-group">
+<<<<<<< HEAD
                     <label for="email">Email</label>
                     <input type="email" id="email" name="email" placeholder="Nhập email của bạn" required>
                     <i class="fas fa-envelope"></i>
+=======
+                    <label for="username">Tài khoản</label>
+  <input type="text" id="username" name="username" placeholder="Nhập tài khoản của bạn" required>
+  <i class="fas fa-user"></i>
+>>>>>>> recover_tram
                 </div>
 
                 <div class="form-group">
@@ -365,6 +371,7 @@
         </div>
     </div>
 
+<<<<<<< HEAD
     <!-- Google Sign-In Library -->
     <script src="https://accounts.google.com/gsi/client" async defer></script>
 
@@ -463,6 +470,59 @@
                 alert.style.display = 'none';
             }, 5000);
         }
+=======
+
+    <script>
+        // // Form submission
+        // document.getElementById('loginForm').addEventListener('submit', function(e) {
+        //     e.preventDefault();
+            
+        //     const formData = new FormData(this);
+            
+        //     fetch('login.php', {
+        //         method: 'POST',
+        //         body: formData
+        //     })
+        //     .then(res => res.json())
+        //     .then(data => {
+        //         if (data.success) {
+        //             showAlert('Đăng nhập thành công!', 'success');
+        //             setTimeout(() => {
+        //                 window.location.href = data.redirect || 'dashboard.php';
+        //             }, 1000);
+        //         } else {
+        //             showAlert(data.message || 'Email hoặc mật khẩu không đúng!', 'error');
+        //         }
+        //     })
+        //     .catch(error => {
+        //         console.error('Error:', error);
+        //         showAlert('Có lỗi xảy ra. Vui lòng thử lại!', 'error');
+        //     });
+        // });
+ 
+
+
+  const form = document.getElementById("loginForm");
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+
+    // Đăng nhập tĩnh
+    if (username === "admin" && password === "123") {
+      localStorage.setItem("loggedIn", "true");
+      localStorage.setItem("username", username);
+      window.location.href = "homepage.html";
+    } else {
+      alert("Sai tài khoản hoặc mật khẩu!");
+    }
+  });
+
+
+
+        
+>>>>>>> recover_tram
     </script>
 </body>
 </html>
