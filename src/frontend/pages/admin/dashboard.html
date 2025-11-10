@@ -395,7 +395,7 @@
 <body>
     <!-- Sidebar -->
     <div class="sidebar">
-        <div class="sidebar-header">
+        <div class="sidebar-header" onclick="window.location.href='../patient/homepage.html'">
             <h4><i class="fas fa-hospital-alt"></i> Eden Admin</h4>
             <p>Hệ thống quản trị</p>
         </div>
@@ -468,7 +468,7 @@
             <h3 class="section-title">Thống kê tổng quan</h3>
             
             <div class="stats-container">
-                <div class="stat-card purple">
+                <div class="stat-card purple" onclick="window.location.href='quanlylichkham.html'">
                     <div class="stat-icon">
                         <i class="fas fa-calendar-check"></i>
                     </div>
@@ -479,7 +479,7 @@
                     </div>
                 </div>
 
-                <div class="stat-card blue">
+                <div class="stat-card blue" onclick="window.location.href='quanlybenhnhan.html'">
                     <div class="stat-icon">
                         <i class="fas fa-user-injured"></i>
                     </div>
@@ -490,7 +490,7 @@
                     </div>
                 </div>
 
-                <div class="stat-card green">
+                <div class="stat-card green" onclick="window.location.href='quanlybacsi.html'">
                     <div class="stat-icon">
                         <i class="fas fa-user-md"></i>
                     </div>
@@ -501,7 +501,7 @@
                     </div>
                 </div>
 
-                <div class="stat-card orange">
+                <div class="stat-card orange" onclick="window.location.href='quanlykhoa.html'">
                     <div class="stat-icon">
                         <i class="fas fa-hospital"></i>
                     </div>
@@ -599,6 +599,53 @@
             </div>
         </div>
     </div>
+
+    <!-- Nút lên đầu trang -->
+    <button id="scrollTopBtn" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" 
+    style="
+        position: fixed;
+        bottom: 25px;
+        right: 25px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-color: #667eea;
+        color: white;
+        border: none;
+        font-size: 26px;
+        font-weight: bold;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        transition: transform 0.3s ease, background-color 0.3s ease;
+        z-index: 9999;
+    ">
+    <span style="transform: translateY(-2px);">▲</span>
+    </button>
+
+    <script>
+    // Hiện nút khi cuộn xuống
+    window.onscroll = function() {
+        const btn = document.getElementById('scrollTopBtn');
+        if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+            btn.style.display = 'flex';
+        } else {
+            btn.style.display = 'none';
+        }
+    };
+
+    // Hiệu ứng hover
+    document.getElementById('scrollTopBtn').onmouseover = function() {
+        this.style.backgroundColor = '#0056b3';
+        this.style.transform = 'scale(1.1)';
+    };
+    document.getElementById('scrollTopBtn').onmouseout = function() {
+        this.style.backgroundColor = '#007bff';
+        this.style.transform = 'scale(1)';
+    };
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
     <script>
