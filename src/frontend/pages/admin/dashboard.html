@@ -651,7 +651,7 @@
     <script>
         // Thống kê tổng quan
         async function loadStatistics() {
-        fetch('http://localhost/DO_AN_1/code_doan1/src/backend/api/admin/statistics.php')
+        fetch('http://localhost/DO_AN_1/code_doan1/src/backend/api/admin/statistics-dashboard.php')
             .then(response => response.json())
             .then(data => {
             animateNumber('totalAppointments', data.appointments);
