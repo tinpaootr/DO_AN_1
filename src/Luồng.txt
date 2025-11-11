@@ -1,16 +1,17 @@
-Luồng đặt lịch của bệnh nhân.
-chọn khoa, chọn chuyên khoa.
-Chọn ngày khám.
-Chọn bác sĩ (chỉ hiện bác sĩ làm việc ngày đó, không thuộc ngày nghỉ).
-Chọn ca làm việc của bác sĩ (sáng/chiều).
-Chọn suất khám (giao diện chỉ hiện suất trống hoặc các suất khám đã đặt thì không thể chọn) //suất khám là khung giờ khám. vd: 7h - 70h40, 7h40 - 8h20,...
-Chọn gói khám: Bình thường (150k) hoặc Chuyên gia (250k). //nếu bác sĩ không phải chuyên gia(CG) thì không thể chọn gói CG,hoặc mọi bs đều có thể khám CG.
-Nhập ghi chú.
-Đặt lịch.
+Luồng đặt lịch của bệnh nhân:
+- Chọn khoa, chọn chuyên khoa.
+- Chọn ngày khám.
+- Chọn bác sĩ (chỉ hiện bác sĩ làm việc ngày đó, không thuộc ngày nghỉ).
+- Chọn ca làm việc của bác sĩ (sáng/chiều).
+- Chọn suất khám (giao diện chỉ hiện suất trống hoặc các suất khám đã đặt thì không thể chọn)
+//Suất khám là khung giờ khám. vd: 7h - 70h40, 7h40 - 8h20,...
+- Chọn gói khám: Bình thường (150k) hoặc Chuyên gia (250k). 
+//nếu bác sĩ không phải chuyên gia thì không thể chọn gói chuyên gia, hoặc mọi bác sĩ đều có thể khám chuyên cho dễ sẽ xử lý.
+- Nhập ghi chú.
+- Đặt lịch.
 
 Lưu ý:
-Trước khi hiển thị danh sách bác sĩ, hệ thống truy vấn kết hợp bảng bacsi, ngaynghi, lichkham để loại bỏ:
-  Bác sĩ nghỉ cả ngày hoặc ca đó.
-  Bác sĩ đã kín suất trong ngày.
-Mỗi khi bệnh nhân chọn ngày/ca, client nên gọi lại API get-available-doctors và get-available-slots để cập nhật.
+Trước khi hiển thị danh sách bác sĩ lên giao diện, thì dùng bộ lọc của API(cái dùng để đổ dữu liệu lên giao diện) để truy vấn kết hợp bảng bacsi, ngaynghi, lichkham để loại bỏ:
+  + Bác sĩ nghỉ cả ngày hoặc ca đó.
+  + Bác sĩ đã có suất khám đặt đạt trong ngày.
 → client không bao giờ hiển thị lựa chọn không khả dụng(hoặc ẩn đi hoàn toàn).
