@@ -11,7 +11,8 @@ Luồng đặt lịch của bệnh nhân:
 - Đặt lịch.
 
 Lưu ý:
-Trước khi hiển thị danh sách bác sĩ lên giao diện, thì dùng bộ lọc của API(cái dùng để đổ dữu liệu lên giao diện) để truy vấn kết hợp bảng bacsi, ngaynghi, lichkham để loại bỏ:
+- Trước khi hiển thị danh sách bác sĩ lên giao diện, thì dùng bộ lọc của API(cái dùng để đổ dữu liệu lên giao diện) để truy vấn kết hợp bảng bacsi, ngaynghi, lichkham để loại bỏ:
   + Bác sĩ nghỉ cả ngày hoặc ca đó.
   + Bác sĩ đã có suất khám đặt đạt trong ngày.
 → client không bao giờ hiển thị lựa chọn không khả dụng(hoặc ẩn đi hoàn toàn).
+- Sau khi bệnh nhân đặt lịch thì lịch khám sẽ mặc định là trạng thái đã đặt(dù trong cột trạng thái có trang thái chờ, trạng thài này sẽ chưa cần dùng đến giống với chuyên gia của bác sĩ) vì hướng của hệ thống là auto-accept mọi lịch khám.
