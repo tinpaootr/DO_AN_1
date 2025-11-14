@@ -1,4 +1,7 @@
-CREATE DATABASE datlichkham;
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+CREATE DATABASE IF NOT EXISTS `datlichkham` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `datlichkham`;
 
 CREATE TABLE `bacsi` (
   `nguoiDungId` int(11) NOT NULL,
@@ -27,7 +30,6 @@ CREATE TABLE `benhnhan` (
 INSERT INTO `benhnhan` (`nguoiDungId`, `maBenhNhan`, `tenBenhNhan`, `ngaySinh`, `gioiTinh`, `soTheBHYT`) VALUES
 (1, 'bn1', 'Nguyễn Văn A', '2000-01-01', 'nam', NULL),
 (8, 'BN202511082304701', 'ABCs', '2005-10-09', 'nam', ''),
-(10, 'BN202511101502408', 'Nguyễn Tiến Đạt', '2005-10-09', 'nam', NULL),
 (11, 'BN202511101515250', 'AAAAAAAA', '2025-11-09', 'khac', 'BH189318214111');
 DELIMITER $$
 CREATE TRIGGER `validate_birthdate_before_insert` BEFORE INSERT ON `benhnhan` FOR EACH ROW BEGIN
@@ -112,11 +114,13 @@ CREATE TABLE `hosobenhan` (
   `maBenhNhan` varchar(20) DEFAULT NULL,
   `maBacSi` varchar(20) DEFAULT NULL,
   `chanDoan` text DEFAULT NULL,
-  `dieuTri` text DEFAULT NULL
+  `dieuTri` text DEFAULT NULL,
+  `ghiChu` text DEFAULT NULL,
+  `ngayKham` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-INSERT INTO `hosobenhan` (`maHoSo`, `maBenhNhan`, `maBacSi`, `chanDoan`, `dieuTri`) VALUES
-('HS1', 'bn1', 'bs1', 'Tình trạng bình thường.', 'Ăn uống ngủ nghỉ hợp lý.');
+INSERT INTO `hosobenhan` (`maHoSo`, `maBenhNhan`, `maBacSi`, `chanDoan`, `dieuTri`, `ghiChu`, `ngayKham`) VALUES
+('HS1', 'bn1', 'bs1', 'Tình trạng bình thường.', 'Ăn uống ngủ nghỉ hợp lý.', '', NULL);
 
 CREATE TABLE `khoa` (
   `maKhoa` varchar(10) NOT NULL,
@@ -153,7 +157,10 @@ INSERT INTO `lichkham` (`maLichKham`, `maBacSi`, `maBenhNhan`, `ngayKham`, `maCa
 (6, 'bs1', 'bn1', '2025-11-11', 1, 1, 2, 'Hoàn thành', NULL),
 (7, 'BS202511102320635', 'BN202511101515250', '2025-11-12', 2, 12, 1, 'Chờ', NULL),
 (8, 'bs1', 'bn1', '2025-11-12', 1, 1, 1, 'Hủy', NULL),
-(9, 'BS202511090112882', 'BN202511082304701', '2025-11-12', 2, 8, 1, 'Đã đặt', NULL);
+(9, 'BS202511090112882', 'BN202511082304701', '2025-11-12', 2, 8, 1, 'Đã đặt', NULL),
+(10, 'BS202511090112882', 'BN202511101515250', '2025-11-13', 1, 1, 2, 'Hoàn thành', NULL),
+(11, 'BS202511090112882', 'BN202511082304701', '2025-11-13', 1, 2, 1, 'Chờ', NULL),
+(12, 'BS202511090112882', 'bn1', '2025-11-13', 1, 3, 1, 'Chờ', NULL);
 
 CREATE TABLE `ngaynghi` (
   `maNghi` int(11) NOT NULL,
@@ -179,7 +186,6 @@ INSERT INTO `nguoidung` (`id`, `tenDangNhap`, `matKhau`, `soDienThoai`, `vaiTro`
 (5, 'nguyenthanhccur1025', '$2y$10$j/IqnU9fT0QPeHyZNU1uuum/5IktMdkELYMVs.Uvu9KOgu1PzjXoq', '0917382642', 'bacsi', 'Hoạt Động'),
 (7, 'levand', '$2y$10$0w2wLh5q8dn.05WVbEYjc.Epw.C4BLmppiM5Hwj4QO7fbSDvqfOkK', '0361846731', 'bacsi', 'Hoạt Động'),
 (8, 'ABCD', '$2y$10$Gucpt7iX418XWZkSgIf8EeSwEj3qDkaepUfrFLc6hiDm.CbmFDqsS', '0936846244', 'benhnhan', 'Hoạt Động'),
-(10, 'nguyentiendat', '$2y$10$vk3BE49qi35EOcOWLCWouOAhbdEfatSQKVArwYe06TUs0NWdvHKTm', '0387856540', 'benhnhan', 'Hoạt Động'),
 (11, '0000000000', '$2y$10$dPxrzHJVA454.TgEO/rLXeta9uL32XKD3jHgx4x6F7VWRX0MSnCW2', '0000000000', 'benhnhan', 'Hoạt Động'),
 (13, 'ndagidyawbda', '$2y$10$CyYX/o4kjkEJwQY7d2EOqOvlDdwBPAhKKZWnILRQJj3oq3wTKYXKq', '0388888888', 'bacsi', 'Hoạt Động');
 
@@ -273,7 +279,7 @@ ALTER TABLE `goikham`
   MODIFY `maGoi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 ALTER TABLE `lichkham`
-  MODIFY `maLichKham` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `maLichKham` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 ALTER TABLE `ngaynghi`
   MODIFY `maNghi` int(11) NOT NULL AUTO_INCREMENT;
