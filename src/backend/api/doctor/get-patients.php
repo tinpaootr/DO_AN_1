@@ -19,31 +19,39 @@ try {
 
     $stmt = $conn->prepare("
         SELECT 
-            lk.maLichKham, lk.trangThai,
-            bn.tenBenhNhan, bn.ngaySinh, bn.gioiTinh,
-            ca.tenCa, ca.maCa,
-            sk.gioBatDau, sk.gioKetThuc,
-            gk.tenGoi
-        FROM lichkham lk
-        JOIN benhnhan bn ON lk.maBenhNhan = bn.maBenhNhan
-        JOIN calamviec ca ON lk.maCa = ca.maCa
-        JOIN suatkham sk ON lk.maSuat = sk.maSuat
-        JOIN goikham gk ON lk.maGoi = gk.maGoi
-        WHERE lk.maBacSi = ? AND lk.ngayKham = CURDATE()
-        ORDER BY ca.maCa, sk.gioBatDau
+            bn.maBenhNhan,
+            bn.tenBenhNhan,
+            bn.ngaySinh,
+            bn.gioiTinh,
+            bn.soTheBHYT,
+            nd.soDienThoai,
+            COUNT(lk.maLichKham) as soLanKham,
+            MAX(lk.ngayKham) as lanKhamGanNhat
+        FROM benhnhan bn
+        JOIN nguoidung nd ON bn.nguoiDungId = nd.id
+        JOIN lichkham lk ON bn.maBenhNhan = lk.maBenhNhan
+        WHERE lk.maBacSi = ?
+        GROUP BY bn.maBenhNhan, bn.tenBenhNhan, bn.ngaySinh, bn.gioiTinh, bn.soTheBHYT, nd.soDienThoai
+        ORDER BY lanKhamGanNhat DESC
     ");
     $stmt->bind_param("s", $maBacSi);
     $stmt->execute();
     $result = $stmt->get_result();
-
-    $appointments = [];
+    
+    $patients = [];
     while ($row = $result->fetch_assoc()) {
-        $appointments[] = $row;
+        $patients[] = $row;
     }
-
-    echo json_encode(['success' => true, 'data' => $appointments]);
+    
+    echo json_encode([
+        'success' => true,
+        'data' => $patients
+    ]);
+    
+    $stmt->close();
 } catch (Exception $e) {
     echo json_encode(['success' => false, 'message' => 'Lỗi: ' . $e->getMessage()]);
 }
+
 $conn->close();
 ?>
