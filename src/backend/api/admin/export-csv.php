@@ -1,16 +1,9 @@
 <?php
-// Kết nối database
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "datlichkham";
+require_once '../../config/cors.php';
+require_once '../../core/dp.php';
+require_once '../../core/session.php';
 
-$conn = new mysqli($servername, $username, $password, $dbname);
-$conn->set_charset("utf8mb4");
-
-if ($conn->connect_error) {
-    die("Connection failed");
-}
+require_role('quantri');
 
 // Lấy tham số
 $filter = isset($_GET['filter']) ? $_GET['filter'] : 'month';

@@ -1,19 +1,9 @@
 <?php
-header("Access-Control-Allow-Origin: *");
-header("Content-Type: application/json; charset=UTF-8");
+require_once '../../config/cors.php';
+require_once '../../core/dp.php';
+require_once '../../core/session.php';
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "datlichkham";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-$conn->set_charset("utf8mb4");
-
-if ($conn->connect_error) {
-    echo json_encode(['success' => false, 'message' => 'Kết nối thất bại']);
-    exit;
-}
+require_role('quantri');
 
 $stats = [
     'total' => 0,

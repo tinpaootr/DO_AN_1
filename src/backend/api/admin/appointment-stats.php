@@ -1,18 +1,12 @@
 <?php
-header('Content-Type: application/json; charset=utf-8');
-header('Access-Control-Allow-Origin: *');
+require_once '../../config/cors.php';
+require_once '../../core/dp.php';
+require_once '../../core/session.php';
 
-$conn = new mysqli("localhost", "root", "", "datlichkham");
-$conn->set_charset("utf8mb4");
-
-if ($conn->connect_error) {
-    echo json_encode(['error' => 'Connection failed']);
-    exit;
-}
+require_role('quantri');
 
 $stats = [
     'total' => 0,
-    'pending' => 0,
     'confirmed' => 0,
     'completed' => 0,
     'cancelled' => 0
@@ -20,9 +14,6 @@ $stats = [
 
 $result = $conn->query("SELECT COUNT(*) as count FROM lichkham");
 $stats['total'] = $result->fetch_assoc()['count'];
-
-$result = $conn->query("SELECT COUNT(*) as count FROM lichkham WHERE trangThai = 'Chờ'");
-$stats['pending'] = $result->fetch_assoc()['count'];
 
 $result = $conn->query("SELECT COUNT(*) as count FROM lichkham WHERE trangThai = 'Đã đặt'");
 $stats['confirmed'] = $result->fetch_assoc()['count'];

@@ -1,20 +1,9 @@
 <?php
-header('Content-Type: application/json; charset=utf-8');
-header('Access-Control-Allow-Origin: *');
+require_once '../../config/cors.php';
+require_once '../../core/dp.php';
+require_once '../../core/session.php';
 
-// Kết nối database
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "datlichkham";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-$conn->set_charset("utf8mb4");
-
-if ($conn->connect_error) {
-    echo json_encode(['success' => false, 'message' => 'Kết nối thất bại']);
-    exit;
-}
+require_role('quantri');
 
 // Lấy danh sách bác sĩ với thông tin chuyên khoa
 $sql = "SELECT 
