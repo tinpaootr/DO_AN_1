@@ -184,12 +184,261 @@
         }
 
         .stat-card.blue .stat-icon { background: linear-gradient(135deg, #3b82f6, #1d4ed8); }
-        .stat-card.green .stat-icon { background: linear-gradient(135deg, #10b981, #059669); }
         .stat-card.purple .stat-icon { background: linear-gradient(135deg, #8b5cf6, #6d28d9); }
         .stat-card.orange .stat-icon { background: linear-gradient(135deg, #f59e0b, #d97706); }
 
         .stat-content h3 { font-size: 2rem; font-weight: 800; color: var(--text-dark); margin: 0; }
         .stat-content p { font-size: 0.9rem; color: var(--text-muted); margin: 0; }
+
+        /* === AVAILABLE SCHEDULE SECTION === */
+        .schedule-section {
+            padding: 40px 0;
+            background: #f8f9fa;
+        }
+
+        .schedule-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
+            overflow: hidden;
+        }
+
+        .schedule-header {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.08), rgba(118, 75, 162, 0.08));
+            padding: 25px 30px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .schedule-header h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin: 0 0 8px 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .schedule-header h3 i {
+            font-size: 1.5rem;
+            color: var(--primary-purple);
+        }
+
+        .schedule-header p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        .schedule-body {
+            padding: 30px;
+        }
+
+        .date-picker-container {
+            margin-bottom: 30px;
+        }
+
+        .date-picker-label {
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+
+        .date-input-wrapper {
+            position: relative;
+            max-width: 300px;
+        }
+
+        .date-input {
+            width: 100%;
+            padding: 12px 16px 12px 45px;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--text-dark);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .date-input:focus {
+            outline: none;
+            border-color: var(--primary-purple);
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .date-input-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--primary-purple);
+            font-size: 1.2rem;
+            pointer-events: none;
+        }
+
+        .shift-tabs {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+            border-bottom: 2px solid #e5e7eb;
+        }
+
+        .shift-tab {
+            padding: 12px 24px;
+            border: none;
+            background: transparent;
+            color: var(--text-muted);
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            border-bottom: 3px solid transparent;
+        }
+
+        .shift-tab:hover {
+            color: var(--primary-purple);
+        }
+
+        .shift-tab.active {
+            color: var(--primary-purple);
+            border-bottom-color: var(--primary-purple);
+        }
+
+        .shift-tab i {
+            margin-right: 8px;
+        }
+
+        .slots-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 15px;
+        }
+
+        .slot-item {
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 16px;
+            text-align: center;
+            transition: all 0.3s;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .slot-item.available {
+            border-color: #10b981;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.05), rgba(5, 150, 105, 0.05));
+        }
+
+        .slot-item.available:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(16, 185, 129, 0.2);
+            border-color: #059669;
+        }
+
+        .slot-item.unavailable {
+            border-color: #e5e7eb;
+            background: #f9fafb;
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        .slot-time {
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: var(--text-dark);
+            margin-bottom: 4px;
+        }
+
+        .slot-status {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .slot-item.available .slot-status {
+            color: #10b981;
+            font-weight: 600;
+        }
+
+        .slot-item.unavailable .slot-status {
+            color: #9ca3af;
+        }
+
+        .slot-icon {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            font-size: 0.9rem;
+        }
+
+        .slot-item.available .slot-icon {
+            color: #10b981;
+        }
+
+        .slot-item.unavailable .slot-icon {
+            color: #9ca3af;
+        }
+
+        /* Tooltip */
+        .slot-tooltip {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1f2937;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            pointer-events: none;
+            margin-bottom: 8px;
+            z-index: 10;
+        }
+
+        .slot-tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: #1f2937;
+        }
+
+        .slot-item.unavailable:hover .slot-tooltip {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .schedule-loading,
+        .schedule-empty {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .schedule-loading .spinner-border {
+            width: 3rem;
+            height: 3rem;
+            color: var(--primary-purple);
+        }
+
+        .schedule-empty i {
+            font-size: 3rem;
+            color: #ddd;
+            margin-bottom: 15px;
+        }
+
+        .schedule-empty p {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
 
         /* === CONTENT SECTION === */
         .detail-content-section { padding: 40px 0 80px; }
@@ -275,6 +524,7 @@
             .quick-info { justify-content: center; }
             .doctor-header-info { text-align: center; padding: 20px 0 0 0; }
             .sidebar-sticky { position: static; }
+            .slots-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
         }
 
         @media (max-width: 768px) {
@@ -284,6 +534,8 @@
             .stat-card { padding: 20px; }
             .stat-icon { width: 50px; height: 50px; font-size: 1.2rem; }
             .stat-content h3 { font-size: 1.5rem; }
+            .schedule-body { padding: 20px; }
+            .slots-grid { grid-template-columns: repeat(2, 1fr); }
         }
     </style>
 </head>
@@ -384,7 +636,7 @@
         <section class="statistics-section reveal">
             <div class="container">
                 <div class="row g-3">
-                    <div class="col-lg-3 col-sm-6">
+                    <div class="col-lg-4 col-sm-6">
                         <div class="stat-card blue">
                             <div class="stat-icon"><i class="fas fa-calendar-check"></i></div>
                             <div class="stat-content">
@@ -393,16 +645,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="stat-card green">
-                            <div class="stat-icon"><i class="fas fa-check-double"></i></div>
-                            <div class="stat-content">
-                                <h3 id="completedAppointments">0</h3>
-                                <p>Đã hoàn thành</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6">
+                    <div class="col-lg-4 col-sm-6">
                         <div class="stat-card purple">
                             <div class="stat-icon"><i class="fas fa-users"></i></div>
                             <div class="stat-content">
@@ -411,12 +654,45 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-sm-6">
+                    <div class="col-lg-4 col-sm-6">
                         <div class="stat-card orange">
                             <div class="stat-icon"><i class="fas fa-star"></i></div>
                             <div class="stat-content">
                                 <h3 id="experienceDisplay">0</h3>
                                 <p>Năm kinh nghiệm</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AVAILABLE SCHEDULE SECTION -->
+        <section class="schedule-section reveal">
+            <div class="container">
+                <div class="schedule-card">
+                    <div class="schedule-header">
+                        <h3>
+                            <i class="fas fa-calendar-alt"></i>
+                            Lịch Khám Khả Dụng
+                        </h3>
+                        <p>Xem các suất khám còn trống của bác sĩ trong 14 ngày tới</p>
+                    </div>
+                    <div class="schedule-body">
+                        <div class="date-picker-container">
+                            <div class="date-picker-label">
+                                <i class="fas fa-calendar-day me-2"></i>Chọn ngày khám
+                            </div>
+                            <div class="date-input-wrapper">
+                                <i class="fas fa-calendar date-input-icon"></i>
+                                <input type="date" class="date-input" id="scheduleDate">
+                            </div>
+                        </div>
+
+                        <div id="scheduleContent">
+                            <div class="schedule-loading">
+                                <div class="spinner-border"></div>
+                                <p class="mt-3">Đang tải lịch khám...</p>
                             </div>
                         </div>
                     </div>
@@ -510,18 +786,16 @@
     <div id="footer-placeholder"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-    
     <script src="../../assets/js/common.js"></script>
 
     <script>
-        // API Configuration
-        // Đổi tên biến API để tránh conflict nếu common.js có global var trùng
         const API_BASE_PATIENT_DOC = 'http://localhost/DO_AN_1/code_doan1/src/backend/api/patient';
+        let currentDoctorId = null;
 
         document.addEventListener('DOMContentLoaded', function() {
-            // common.js sẽ tự load header/footer & check login
             loadDoctorDetail();
             setupScrollAnimations();
+            setupScheduleDatePicker();
         });
 
         // === SCROLL ANIMATION ===
@@ -530,12 +804,10 @@
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('visible');
-                        // observer.unobserve(entry.target); // Uncomment nếu muốn chạy 1 lần
                     }
                 });
             }, { threshold: 0.1 });
 
-            // Delay một chút để DOM ổn định
             setTimeout(() => {
                 document.querySelectorAll('.reveal').forEach(el => {
                     observer.observe(el);
@@ -543,7 +815,48 @@
             }, 500);
         }
 
-        // === LOAD DATA ===
+        // Helper function để format Date về YYYY-MM-DD theo local timezone
+        function formatDateToLocal(date) {
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const day = String(date.getDate()).padStart(2, '0');
+            return `${year}-${month}-${day}`;
+        }
+
+        // === DATE PICKER SETUP ===
+        function setupScheduleDatePicker() {
+            const dateInput = document.getElementById('scheduleDate');
+            
+            // Set min (today) and max (14 days) - Dùng timezone local
+            const today = new Date();
+            const maxDate = new Date();
+            maxDate.setDate(today.getDate() + 14);
+            
+            // Chuyển về định dạng YYYY-MM-DD theo local timezone
+            const todayStr = formatDateToLocal(today);
+            const maxDateStr = formatDateToLocal(maxDate);
+            
+            dateInput.min = todayStr;
+            dateInput.max = maxDateStr;
+            dateInput.value = todayStr;
+            
+            // Load schedule when date changes
+            dateInput.addEventListener('change', function() {
+                if (currentDoctorId && this.value) {
+                    loadDoctorSchedule(currentDoctorId, this.value);
+                }
+            });
+            
+            // THÊM DÒNG NÀY: Trigger load lịch ngay khi setup xong
+            // (dùng setTimeout để đảm bảo currentDoctorId đã được set)
+            setTimeout(() => {
+                if (currentDoctorId) {
+                    loadDoctorSchedule(currentDoctorId, todayStr);
+                }
+            }, 100);
+        }
+
+        // === LOAD DOCTOR DETAIL ===
         function getDoctorIdFromUrl() {
             const urlParams = new URLSearchParams(window.location.search);
             return urlParams.get('id');
@@ -557,6 +870,8 @@
                 return;
             }
 
+            currentDoctorId = maBacSi;
+
             try {
                 const response = await fetch(`${API_BASE_PATIENT_DOC}/get-doctor-detail.php?maBacSi=${encodeURIComponent(maBacSi)}`);
                 const data = await response.json();
@@ -564,6 +879,10 @@
                 if (data.success && data.data) {
                     renderDoctorDetail(data.data);
                     showContent();
+                    
+                    // Load today's schedule
+                    const today = new Date().toISOString().split('T')[0];
+                    loadDoctorSchedule(maBacSi, today);
                 } else {
                     showError();
                 }
@@ -571,29 +890,25 @@
                 console.error('Error loading doctor detail:', error);
                 showError();
             } finally {
-                // Ẩn Page Loader toàn trang (nếu common.js chưa ẩn)
                 const pageLoader = document.getElementById('pageLoader');
                 if(pageLoader) pageLoader.style.display = 'none';
             }
         }
 
         function renderDoctorDetail(doctor) {
-            // Tính năm kinh nghiệm
             const currentYear = new Date().getFullYear();
             const experience = doctor.namLamViec ? currentYear - doctor.namLamViec : 0;
             
-            // Title
             document.title = `${doctor.tenBacSi} - Eden Health`;
             document.getElementById('breadcrumbName').textContent = doctor.tenBacSi;
             
-            // Header Info
             const imageSrc = doctor.gioiTinh === 'nu' 
                 ? '../../assets/images/doctor_female.png' 
                 : '../../assets/images/doctor_male.png';
             
             const avatarEl = document.getElementById('doctorAvatar');
             avatarEl.src = doctor.anhDaiDien || imageSrc;
-            avatarEl.onerror = function() { this.src = imageSrc; }; // Fallback ảnh lỗi
+            avatarEl.onerror = function() { this.src = imageSrc; };
 
             document.getElementById('headerSpecialty').textContent = doctor.tenChuyenKhoa || 'Đa khoa';
             document.getElementById('doctorName').textContent = doctor.tenBacSi;
@@ -602,29 +917,112 @@
             document.getElementById('experienceYears').textContent = experience > 0 ? `${experience} năm` : 'Mới';
             document.getElementById('doctorGender').textContent = formatGender(doctor.gioiTinh);
             
-            // Link đặt lịch
             const bookingUrl = `datlich.html?bacsi=${doctor.maBacSi}&chuyenkhoa=${doctor.maChuyenKhoa}`;
             document.getElementById('btnBookMain').href = bookingUrl;
             
-            // Statistics (Format số đẹp)
             document.getElementById('totalAppointments').textContent = (doctor.totalAppointments || 0).toLocaleString('vi-VN');
-            document.getElementById('completedAppointments').textContent = (doctor.completedAppointments || 0).toLocaleString('vi-VN');
             document.getElementById('totalPatients').textContent = (doctor.totalPatients || 0).toLocaleString('vi-VN');
             document.getElementById('experienceDisplay').textContent = experience > 0 ? experience : 'Mới';
             
-            // Description
             const defaultDesc = `Bác sĩ ${doctor.tenBacSi} là một trong những bác sĩ giàu kinh nghiệm tại ${doctor.tenKhoa || 'bệnh viện'}. Với chuyên môn cao trong lĩnh vực ${doctor.tenChuyenKhoa || 'y học'}, bác sĩ luôn tận tâm chăm sóc và điều trị cho bệnh nhân với phương pháp hiệu quả nhất.`;
             document.getElementById('doctorDescription').textContent = doctor.moTa || defaultDesc;
             
-            // Specialty Info
             document.getElementById('specialtyName').textContent = doctor.tenChuyenKhoa || 'Đa khoa';
             document.getElementById('specialtyDescription').textContent = doctor.moTaChuyenKhoa || 'Chuyên khoa cung cấp các dịch vụ khám và điều trị chuyên sâu, với đội ngũ bác sĩ giàu kinh nghiệm và trang thiết bị hiện đại.';
             
-            // Sidebar Info
             document.getElementById('sidebarDepartment').textContent = doctor.tenKhoa || 'Chưa xác định';
             document.getElementById('sidebarSpecialty').textContent = doctor.tenChuyenKhoa || 'Đa khoa';
             document.getElementById('sidebarStartYear').textContent = doctor.namLamViec || 'Chưa cập nhật';
             document.getElementById('sidebarExperience').textContent = experience > 0 ? `${experience} năm` : 'Mới';
+        }
+
+        // === LOAD DOCTOR SCHEDULE ===
+        async function loadDoctorSchedule(maBacSi, ngayKham) {
+            const container = document.getElementById('scheduleContent');
+            container.innerHTML = '<div class="schedule-loading"><div class="spinner-border"></div><p class="mt-3">Đang tải lịch khám...</p></div>';
+
+            try {
+                const response = await fetch(`${API_BASE_PATIENT_DOC}/get-doctor-schedule.php?maBacSi=${encodeURIComponent(maBacSi)}&ngayKham=${ngayKham}`);
+                const data = await response.json();
+
+                if (data.success) {
+                    renderSchedule(data.data);
+                } else {
+                    container.innerHTML = `
+                        <div class="schedule-empty">
+                            <i class="fas fa-calendar-times"></i>
+                            <p>${data.message || 'Không thể tải lịch khám'}</p>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                console.error('Error loading schedule:', error);
+                container.innerHTML = `
+                    <div class="schedule-empty">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <p>Lỗi tải dữ liệu. Vui lòng thử lại!</p>
+                    </div>
+                `;
+            }
+        }
+
+        function renderSchedule(schedule) {
+            const container = document.getElementById('scheduleContent');
+            
+            const morningSlots = schedule.caSang || [];
+            const afternoonSlots = schedule.caChieu || [];
+
+            container.innerHTML = `
+                <div class="shift-tabs">
+                    <button class="shift-tab active" data-shift="morning">
+                        <i class="fas fa-sun"></i>Ca Sáng
+                    </button>
+                    <button class="shift-tab" data-shift="afternoon">
+                        <i class="fas fa-cloud-sun"></i>Ca Chiều
+                    </button>
+                </div>
+                
+                <div class="shift-content active" id="morningShift">
+                    ${renderSlots(morningSlots)}
+                </div>
+                
+                <div class="shift-content" id="afternoonShift" style="display: none;">
+                    ${renderSlots(afternoonSlots)}
+                </div>
+            `;
+
+            // Setup tab switching
+            document.querySelectorAll('.shift-tab').forEach(tab => {
+                tab.addEventListener('click', function() {
+                    document.querySelectorAll('.shift-tab').forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+
+                    const shift = this.dataset.shift;
+                    document.getElementById('morningShift').style.display = shift === 'morning' ? 'block' : 'none';
+                    document.getElementById('afternoonShift').style.display = shift === 'afternoon' ? 'block' : 'none';
+                });
+            });
+        }
+
+        function renderSlots(slots) {
+            if (!slots || slots.length === 0) {
+                return '<div class="schedule-empty"><i class="fas fa-calendar-times"></i><p>Không có suất khám</p></div>';
+            }
+
+            return `
+                <div class="slots-grid">
+                    ${slots.map(slot => `
+                        <div class="slot-item ${slot.status}">
+                            <i class="fas ${slot.status === 'available' ? 'fa-check-circle' : 'fa-times-circle'} slot-icon"></i>
+                            <div class="slot-time">${slot.gioBatDau} - ${slot.gioKetThuc}</div>
+                            <div class="slot-status">
+                                ${slot.status === 'available' ? 'Còn trống' : 'Không khả dụng'}
+                            </div>
+                            ${slot.reason ? `<div class="slot-tooltip">${slot.reason}</div>` : ''}
+                        </div>
+                    `).join('')}
+                </div>
+            `;
         }
 
         function formatGender(gender) {
@@ -637,7 +1035,6 @@
             document.getElementById('errorState').style.display = 'none';
             document.getElementById('mainContent').style.display = 'block';
             
-            // Kích hoạt animation sau khi hiện content
             setTimeout(() => {
                 document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
             }, 100);
