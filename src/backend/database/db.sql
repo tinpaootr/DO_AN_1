@@ -548,9 +548,9 @@ CREATE TABLE `lienhe` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 INSERT INTO `lienhe` (`maLienHe`, `hoTen`, `email`, `soDienThoai`, `chuDe`, `noiDung`, `trangThai`, `thoiGianGui`, `nguoiXuLy`, `thoiGianXuLy`, `ghiChu`) VALUES
-(1, 'Test', 'test@gmail.com', '0123456789', 'Khác', 'test', 'Chưa xử lý', '2025-11-23 19:21:51', NULL, NULL, NULL),
-(2, 'testtwo', 'two@gmail.vn', '0987654321', 'Khác', 'a', 'Chưa xử lý', '2025-11-23 19:42:29', NULL, NULL, NULL),
-(3, 'hovaten', 'example@gamil.com', '0123456789', 'Khác', 'test n', 'Chưa xử lý', '2025-11-24 17:10:15', NULL, NULL, NULL);
+(1, 'Test', 'test@gmail.com', '0123456789', 'Khác', 'test', 'Đã xử lý', '2025-11-23 19:21:51', 3, '2025-11-26 09:50:39', NULL),
+(2, 'testtwo', 'two@gmail.vn', '0987654321', 'Khác', 'a', 'Đã xử lý', '2025-11-23 19:42:29', 3, '2025-11-26 09:50:35', NULL),
+(3, 'hovaten', 'example@gamil.com', '0123456789', 'Khác', 'test n', 'Đã xử lý', '2025-11-24 17:10:15', 3, '2025-11-26 09:50:31', NULL);
 
 CREATE TABLE `ngaynghi` (
   `maNghi` int(11) NOT NULL,
